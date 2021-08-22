@@ -5,7 +5,6 @@ class Config():
   pass
 
 
-
 class DevConfig(Config):
     DEBUG = True
 
