@@ -3,7 +3,7 @@ from enum import unique
 from wtforms.fields.simple import PasswordField
 from wtforms.validators import ValidationError
 from . import db
-from werkzeug.security import generate_password_hash, check_password_hash
+#from werkzeug.security import generate_password_hash, check_password_hash
 
 
 class user(db.Model):
@@ -14,18 +14,18 @@ class user(db.Model):
 
 
 
-    @property
-    def password(self):
-        raise ValidationError('Password cannot be read')
+    # @property
+    # def password(self):
+    #     raise ValidationError('Password cannot be read')
 
 
-    @password.setter
-    def password(self,password):
-            self.password_hash = generate_password_hash(password)
+    # @password.setter
+    # def password(self,password):
+    #         self.password_hash = generate_password_hash(password)
 
 
-    def verify_password(self,password):
-        check_password_hash(self.password_hash, password)
+    # def verify_password(self,password):
+    #     check_password_hash(self.password_hash, password)
      
 
     def __repr__(self):

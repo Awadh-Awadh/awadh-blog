@@ -1,8 +1,10 @@
 from flask import Flask
 from config import config_options
 from flask_sqlalchemy import SQLAlchemy
+from flask_bcrypt import Bcrypt
 
 db = SQLAlchemy()
+bcryp = Bcrypt()
 
 
 
@@ -25,5 +27,6 @@ def create_app(config_name):
     #initializinga extensions
 
     db.init_app(app)
+    bcryp.init_app(app)
 
     return app
