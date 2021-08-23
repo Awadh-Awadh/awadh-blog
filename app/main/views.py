@@ -1,9 +1,9 @@
-from flask_login import login_required
+from flask_login import login_required, current_user
 from app import main, db
-from flask import render_template,redirect,url_for
+from flask import render_template,redirect,url_for, flash
 from app.requests import get_quotes
 from . import main
-from .forms import WriteForm
+from .forms import EditProfile, WriteForm
 from ..models import User, Posts
 
 @main.route('/')
@@ -35,8 +35,21 @@ def write():
 @main.route('/account')
 def account():
 
+
     return render_template('account.html')
 
 @main.route('/profile', methods = ['GET','POST'])
 def profile():
-    return render_template('userprof.html')
+    form = EditProfile()
+    image_file = url_for('static', filename = 'images/' + current_user.image_url)
+    if form.validate_on_submit():
+        
+        current_user.username = form.user.data
+        current_user.bio = form.bio.data
+        db.session.commit()
+        flash('Acount updated successfully', 'success')
+
+    form.user.data = current_user.username
+    form.bio.data = current_user.bio
+
+    return render_template('userprof.html', form = form, image = image_file)
