@@ -38,13 +38,16 @@
       </div>
       <div class="navbar-collapse collapse">
         <ul class="nav navbar-nav pull-right">
-          <li><a href="">Our Story</a></li>
+          
           {% if current_user.is_authenticated %}
-          <li><a href= "{{url_for('auth.logout')}}"><i class="fas fa-sign-out-alt"></i> Logout</a></li> 
-         <li><a href="{{url_for('main.profile')}}"> <i class="fas fa-user-alt"></i> Profile</a></li>
+          <li><a href="{{url_for('main.account')}}">Account</a></li>
          <li><a href="{{url_for('main.write')}}">Write</a></li>
+         <li><a href="{{url_for('main.profile')}}"> <i class="fas fa-user-alt"></i> Profile</a></li>
+        <li><a href= "{{url_for('auth.logout')}}"><i class="fas fa-sign-out-alt"></i> Logout</a></li> 
+         
 
           {% else %}
+          <li><a href="">Our Story</a></li>
           <li class=""><a href="{{url_for('auth.login')}}"><i class="fas fa-sign-in-alt"></i> Login</a></li>
           <li><a href="{{url_for('auth.login')}}">Write</a></li>
           <li><button><a href="{{url_for('auth.register')}}">Get Started</a></button></li>

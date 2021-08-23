@@ -32,7 +32,14 @@
         </div>
       </div>
     </div>
-   
+    <div class="col-md-5">
+      <h1 class = "text-center">My stories</h1>
+      <hr>
+      {%  for posts in posts %}
+      <p>{{user.posts}}</p>
+      {% endfor %}
+      
+    </div>
   </div>
  
  

@@ -37,11 +37,12 @@ def write():
     return render_template('write.html', form = form, posts = posts)
 
 @main.route('/account')
+@login_required
 def account():
-
-
-
-    return render_template('account.html')
+    quotes = get_quotes()
+    posts = Posts.query.all()
+    image = current_user.image_url
+    return render_template('account.html', quotes= quotes, posts = posts, image=image)
 
 def save_picture(form_picture):
     random_hex = secrets.token_hex(8)
@@ -56,6 +57,8 @@ def save_picture(form_picture):
 def profile():
     form = EditProfile()
     image_file = url_for('static', filename = 'images/' + current_user.image_url)
+    posts = Posts.query.all()
+    user = User.query.filter_by(username = current_user.username).first
     if form.validate_on_submit():
         if form.picture_upload.data:
             picture_file = save_picture(form.picture_upload.data)
@@ -68,4 +71,4 @@ def profile():
     form.user.data = current_user.username
     form.bio.data = current_user.bio
 
-    return render_template('userprof.html', form = form, image = image_file)
+    return render_template('userprof.html', form = form, image = image_file, user = user, posts = posts)
