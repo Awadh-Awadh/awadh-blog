@@ -18,6 +18,8 @@ img{
   padding-left: 3rem;
   display: flex;
   flex-wrap: wrap;
+  
+  
 }
 .one{
   background-color: transparent;
@@ -26,6 +28,8 @@ img{
   text-align: center;
   margin:2rem 0.5rem;
   border: 2px solid #304352;
+  
+  
 }
 
 .one a{
