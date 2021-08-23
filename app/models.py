@@ -10,16 +10,16 @@ def load_user(user_id):
 class User(db.Model, UserMixin):
     __tablename__ = 'users'
     id = db.Column(db.Integer(), primary_key = True)
-    username = db.Column(db.string(20), nullable = False)
+    username = db.Column(db.String(20), nullable = False)
     email = db.Column(db.String(), nullable = False)
-    password =db.Column(db.String(60))
+    password =db.Column(db.String(80))
     posts = db.relationship('Posts', backref = 'author', lazy = 'dynamic')
 
 
 class Posts (db.Model):
     __tablename__ = 'pitches'
     id = db.Column(db.Integer(), primary_key = True)
-    title = db.Column(db.string(20), nullable = False)
+    title = db.Column(db.String(20), nullable = False)
     content = db.Column(db.String(255))
     user_id = db.Column(db.Integer(), db.ForeignKey('users.id'))
 

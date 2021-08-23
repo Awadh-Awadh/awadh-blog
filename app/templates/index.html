@@ -1,12 +1,86 @@
-<!DOCTYPE html>
-<html lang="en">
-<head>
-  <meta charset="UTF-8">
-  <meta http-equiv="X-UA-Compatible" content="IE=edge">
-  <meta name="viewport" content="width=device-width, initial-scale=1.0">
-  <title>Document</title>
-</head>
-<body>
+
+{% extends 'layout.html'%}
+{% block css%}
+<link rel="stylesheet" href="{{url_for('static',filename='css/home.css')}}">
+{% endblock %}  
+  {% block content %}
+  <section id = "home">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-7">
+          <h1>
+            SHREDEDD is a place to read, write and network
+          </h1>
+          <p>
+            It's easy and free to post your thinking and connect with millions of readers.
+          </p>
+          <button>Start Writ</button>
+  
+        </div>
+        <div class="col-md-5">
+          <img src="{{url_for('static', filename='/images/hero.jpg')}}" alt="">
+        </div>
+      </div>
+    </div>
+  </section>
+  <hr>
+
+  <section id = "home">
+    <div class="container">
+      <div class="row">
+        <div class="col-md-7">
+          <h1 class = "text-center">
+           Read Below 
+          </h1>
+          <h3>
+            It's easy and free to post your thinking and connect with millions of readers.
+          </h3>
+          <button>Start Writ</button>
+  
+        </div>
+        <div class="col-md-5">
+         <h3 class = "text-center"> 
+           Discover
+         </h3>
+         <div class = 'cats'>
+         <div class = 'one' >
+           <a href="">Programming</a>
+          </div>
+          <div  class = 'one'>
+            <a href="">JavaScript</a>
+           </div>
+           <div  class = 'one'>
+            <a href="">Branding</a>
+           </div>
+           <div  class = 'one'>
+            <a href="">Science</a>
+           </div>
+           <div  class = 'one'>
+            <a href="">Data Structures</a>
+           </div>
+           <div  class = 'one'>
+            <a href="">Politics</a>
+           </div>
+           <div  class = 'one'>
+            <a href="">Data Science</a>
+           </div>
+           <div  class = 'one'>
+            <a href="">Python</a>
+           </div>
+         </div> 
+         <div class="topics">
+          <a href="">see all topics</a>
+          
+        </div>
+        
+         <hr>
+         
+        </div>
+      </div>
+    </div>
+  </section>
+ 
   {{quotes.quote}}
+  {% endblock %}
 </body>
 </htmle

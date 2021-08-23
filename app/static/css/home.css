@@ -1,0 +1,40 @@
+body{
+  background: #304352 !important;  
+  background: -webkit-linear-gradient(to right, #d7d2cc, #304352); 
+  background: linear-gradient(to right, #d7d2cc, #304352) !important;
+  
+}
+
+/* #home{
+ 
+} */
+
+img{
+  height: 500px;
+  width: 500px;
+  border-radius: 10px;
+}
+.cats{
+  padding-left: 3rem;
+  display: flex;
+  flex-wrap: wrap;
+}
+.one{
+  background-color: transparent;
+  height: 50px;
+  width: 100px;
+  text-align: center;
+  margin:2rem 0.5rem;
+  border: 2px solid #304352;
+}
+
+.one a{
+  text-decoration: none;
+  color: white;
+  
+}
+.topics a{
+  text-decoration: none;
+  font-size: 2rem;
+  color: white
+}
