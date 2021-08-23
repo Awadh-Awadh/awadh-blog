@@ -5,8 +5,12 @@ from app.requests import get_quotes
 from . import main
 from .forms import EditProfile, WriteForm
 from ..models import User, Posts
+import secrets
+import os
 
-@main.route('/')
+
+
+@main.route('/') 
 def index():
     # quotes = get_quotes()
     posts = Posts.query.all()
@@ -36,14 +40,26 @@ def write():
 def account():
 
 
+
     return render_template('account.html')
+
+def save_picture(form_picture):
+    random_hex = secrets.token_hex(8)
+    _, fn_ext = os.path.splitext(form_picture.filename)
+    picture_fn = fn_ext
+    pic_full_path = os.path.join('app/static/images', current_user.image_url)
+    form_picture.save(pic_full_path)
+    return picture_fn
+
 
 @main.route('/profile', methods = ['GET','POST'])
 def profile():
     form = EditProfile()
     image_file = url_for('static', filename = 'images/' + current_user.image_url)
     if form.validate_on_submit():
-        
+        if form.picture_upload.data:
+            picture_file = save_picture(form.picture_upload.data)
+            current_user.image_url = picture_file
         current_user.username = form.user.data
         current_user.bio = form.bio.data
         db.session.commit()

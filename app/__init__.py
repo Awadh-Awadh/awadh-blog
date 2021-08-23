@@ -4,6 +4,7 @@ from flask_sqlalchemy import SQLAlchemy
 from flask_bcrypt import Bcrypt
 from flask_login import LoginManager
 from flask_bootstrap import Bootstrap
+# from flask_uploads import configure_uploads, IMAGES, UploadSet
 
 db = SQLAlchemy()
 bcrypt = Bcrypt()
@@ -11,11 +12,13 @@ login_manager = LoginManager()
 login_manager.session_protection = 'strong'
 login_manager.login_view = 'auth.login'
 bootstrap =Bootstrap()
+# photos = UploadSet('photos', IMAGES)
 
 def create_app(config_name):
 
     app = Flask(__name__)
     app.config.from_object(config_options[config_name])
+    
 
     # #configure requests
     # from .requests import configure_requests
@@ -34,5 +37,7 @@ def create_app(config_name):
     bcrypt.init_app(app)
     login_manager.init_app(app)
     bootstrap.init_app(app)
+     # configure UploadSet
+    # configure_uploads(app,photos)
 
     return app
