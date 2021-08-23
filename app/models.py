@@ -13,6 +13,7 @@ class User(db.Model, UserMixin):
     username = db.Column(db.String(20), nullable = False)
     email = db.Column(db.String(), nullable = False)
     password =db.Column(db.String(80))
+    image_url = db.Column(db.String(), default = 'profile.jgp')
     posts = db.relationship('Posts', backref = 'author', lazy = 'dynamic')
 
 

@@ -41,7 +41,7 @@
           <li><a href="">Our Story</a></li>
           {% if current_user.is_authenticated %}
           <li><a href= "{{url_for('auth.logout')}}"><i class="fas fa-sign-out-alt"></i> Logout</a></li> 
-         <li><a href=""> <i class="fas fa-user-alt"></i> Profile</a></li>
+         <li><a href="{{url_for('main.profile')}}"> <i class="fas fa-user-alt"></i> Profile</a></li>
          <li><a href="{{url_for('main.write')}}">Write</a></li>
 
           {% else %}

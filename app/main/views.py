@@ -9,23 +9,34 @@ from ..models import User, Posts
 @main.route('/')
 def index():
     # quotes = get_quotes()
+    posts = Posts.query.all()
 
-    return render_template('index.html')
+    # blogs = [
+    #     {
+    #         'title':
+    #     }
+    # ]
+
+    return render_template('index.html', posts = posts)
 
 
-@main.route('/publish')
+@main.route('/publish', methods = ['GET','POST'])
 @login_required
 def write():
     form = WriteForm()
     if form.validate_on_submit():
-        post = Posts(title = form.title.data, conent = form.story.data)
+        post = Posts(title = form.title.data, content = form.story.data)
         db.session.add(post)
         db.session.commit()
         return redirect(url_for('main.account'))
     posts = Posts.query.all()
-    return render_template('index.html', form = form, posts = posts)
+    return render_template('write.html', form = form, posts = posts)
 
 @main.route('/account')
 def account():
 
     return render_template('account.html')
+
+@main.route('/profile', methods = ['GET','POST'])
+def profile():
+    return render_template('userprof.html')
