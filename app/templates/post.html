@@ -9,6 +9,10 @@
       <p>{{posts.content}}</p>
       <small>{{posts.author.username}}</small>
       <small>{{posts.timestamp}}</small>
+      <div>
+        <a href="{{url_for('main.delete', post_id = posts.id)}}"><button type = 'button'class = "btn btn-large btn-danger">Delete</button></a>
+      </div>
+     
       <hr>
 </div>
 

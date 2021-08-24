@@ -88,4 +88,4 @@ def delete(post_id):
         abort(403)
     db.session.delete(post)
     db.session.commit()
-    return redirect('main.account')
+    return redirect(url_for('main.account') )

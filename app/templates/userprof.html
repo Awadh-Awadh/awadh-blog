@@ -36,7 +36,7 @@
       <h1 class = "text-center">My stories</h1>
       <hr>
       {%  for posts in posts %}
-      <p>{{user.posts}}</p>
+      <p>{{posts.author.posts}}</p>
       {% endfor %}
       
     </div>
