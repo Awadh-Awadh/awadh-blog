@@ -1,6 +1,6 @@
 from flask_login import login_required, current_user
 from app import main, db
-from flask import render_template,redirect,url_for, flash
+from flask import render_template,redirect,url_for, flash, abort
 from app.requests import get_quotes
 from . import main
 from .forms import EditProfile, WriteForm
@@ -79,3 +79,13 @@ def profile():
 def post(post_id):
     posts = Posts.query.get_or_404(post_id)
     return render_template('post.html', posts = posts)
+
+
+@main.route('/post/<int:post_id>/delete')
+def delete(post_id):
+    post = Posts.query.get_or_404(post_id)
+    if post.author != current_user:
+        abort(403)
+    db.session.delete(post)
+    db.session.commit()
+    return redirect('main.account')
