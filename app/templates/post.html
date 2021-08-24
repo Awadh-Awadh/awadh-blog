@@ -8,7 +8,9 @@
       <h2>{{posts.title}}</h2>
       <p>{{posts.content}}</p>
       <small>{{posts.author.username}}</small>
-      <small>{{posts.timestamp}}</small>
+      <div>
+        <small>{{post.timestamp.strftime("%m/%d/%Y")}}</small>
+      </div>
       <div>
         <a href="{{url_for('main.delete', post_id = posts.id)}}"><button type = 'button'class = "btn btn-large btn-danger">Delete</button></a>
       </div>

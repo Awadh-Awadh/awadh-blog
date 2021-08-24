@@ -39,7 +39,10 @@
               <h2>{{post.title}}</h2>
               <p>{{post.content}}</p>
               <small>{{post.author.username}}</small>
-              <small>{{post.timestamp}}</small>
+              <div>
+                <small>{{post.timestamp.strftime("%m/%d/%Y")}}</small>
+              </div>
+              
               <hr>
               {% endfor %}
             </div>
@@ -53,28 +56,28 @@
          <div class="cat-holder">
           <div class = 'cats'>
             <div class = 'one' >
-              <a href="#home">Programming</a>
+              <a href="{{url_for('main.account')}}">Programming</a>
              </div>
              <div  class = 'one'>
-               <a href="#home">JavaScript</a>
+               <a href="{{url_for('main.account')}}">JavaScript</a>
               </div>
               <div  class = 'one'>
-               <a href="#home">Branding</a>
+               <a href="{{url_for('main.account')}}">Branding</a>
               </div>
               <div  class = 'one'>
-               <a href="#home">Science</a>
+               <a href="{{url_for('main.account')}}">Science</a>
               </div>
               <div  class = 'one'>
-               <a href="#home">Data Structures</a>
+               <a href="{{url_for('main.account')}}">Data Structures</a>
               </div>
               <div  class = 'one'>
-               <a href="#home">Politics</a>
+               <a href="{{url_for('main.account')}}">Politics</a>
               </div>
               <div  class = 'one'>
-               <a href="#home">Data Science</a>
+               <a href="{{url_for('main.account')}}">Data Science</a>
               </div>
               <div  class = 'one'>
-               <a href="#home">Python</a>
+               <a href="{{url_for('main.account')}}">Python</a>
               </div>
             </div> 
          </div>
