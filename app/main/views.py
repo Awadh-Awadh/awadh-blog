@@ -24,14 +24,15 @@ def index():
     return render_template('index.html', posts = posts)
 
 
-@main.route('/publish', methods = ['GET','POST'])
+@main.route('/publish/new', methods = ['GET','POST'])
 @login_required
 def write():
     form = WriteForm()
     if form.validate_on_submit():
-        post = Posts(title = form.title.data, content = form.story.data)
+        post = Posts(title = form.title.data, content = form.story.data, author = current_user)
         db.session.add(post)
         db.session.commit()
+        flash('Your post has been created!','success')
         return redirect(url_for('main.account'))
     posts = Posts.query.all()
     return render_template('write.html', form = form, posts = posts)
@@ -48,7 +49,7 @@ def save_picture(form_picture):
     random_hex = secrets.token_hex(8)
     _, fn_ext = os.path.splitext(form_picture.filename)
     picture_fn = fn_ext
-    pic_full_path = os.path.join('app/static/images', current_user.image_url)
+    pic_full_path = os.path.join('app/static/images', 'profile.jpg')
     form_picture.save(pic_full_path)
     return picture_fn
 
@@ -56,7 +57,7 @@ def save_picture(form_picture):
 @main.route('/profile', methods = ['GET','POST'])
 def profile():
     form = EditProfile()
-    image_file = url_for('static', filename = 'images/' + current_user.image_url)
+    image_file = url_for('static', filename = 'images/'+ 'profile.jpg')
     posts = Posts.query.all()
     user = User.query.filter_by(username = current_user.username).first
     if form.validate_on_submit():
@@ -71,4 +72,4 @@ def profile():
     form.user.data = current_user.username
     form.bio.data = current_user.bio
 
-    return render_template('userprof.html', form = form, image = image_file, user = user, posts = posts)
+    return render_template('userprof.html', form = form, image = image_file,user = user, posts = posts)

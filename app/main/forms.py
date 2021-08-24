@@ -1,15 +1,15 @@
 from flask_wtf import FlaskForm
 from flask_wtf.file import FileAllowed, FileField
 from  wtforms import SubmitField, StringField, TextAreaField
-from wtforms.validators import ValidationError
+from wtforms.validators import DataRequired, ValidationError
 from ..models import User
 from flask_login import current_user
 
 
 
 class WriteForm(FlaskForm):
-    title = StringField('Title')
-    story = StringField('Write a story')
+    title = StringField('Title', validators=[DataRequired()])
+    story = StringField('Write a story',validators=[DataRequired()])
     submit = SubmitField('Publish')
 
 
