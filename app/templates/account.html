@@ -14,7 +14,7 @@
       <hr>
       <h1 class = 'text-center'>Topics For you</h1>
       {% for post in posts %}
-      <h3>{{post.title}}</h3>
+      <h3><a href="{{url_for('main.post', post_id =post.id ) }}">{{post.title}}</a></h3>
       <p>{{post.content}}</p>
       <small>{{post.author.username}}...</small>
       <small>from your network</small><br>

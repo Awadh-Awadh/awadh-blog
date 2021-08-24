@@ -1,0 +1,16 @@
+{% extends 'layout.html' %}
+{% block content %}
+
+
+<div class="container">
+  <div class="content">
+    <div class="head">
+      <h2>{{posts.title}}</h2>
+      <p>{{posts.content}}</p>
+      <small>{{posts.author.username}}</small>
+      <small>{{posts.timestamp}}</small>
+      <hr>
+</div>
+
+
+    {% endblock %}

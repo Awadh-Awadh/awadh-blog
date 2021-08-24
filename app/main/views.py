@@ -73,3 +73,9 @@ def profile():
     form.bio.data = current_user.bio
 
     return render_template('userprof.html', form = form, image = image_file,user = user, posts = posts)
+
+
+@main.route('/post/<int:post_id>')
+def post(post_id):
+    posts = Posts.query.get_or_404(post_id)
+    return render_template('post.html', posts = posts)
