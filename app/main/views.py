@@ -84,8 +84,6 @@ def post(post_id):
 @main.route('/post/<int:post_id>/delete')
 def delete(post_id):
     post = Posts.query.get_or_404(post_id)
-    if post.author != current_user:
-        abort(403)
     db.session.delete(post)
     db.session.commit()
     return redirect(url_for('main.account') )
