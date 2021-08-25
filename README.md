@@ -45,7 +45,7 @@ To run your application use command:
 - flask run
 
 ## Live Link
-[Live Link](https://awadh-talky.herokuapp.com/)
+[Live Link](awadh-blog.herokuapp.com/)
 
 ## Known Bugs 
 
