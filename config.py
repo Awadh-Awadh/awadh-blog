@@ -2,7 +2,7 @@ import os
 
 
 class Config():
-   SQLALCHEMY_DATABASE_URI = "postgresql+psycopg2://moringa:Access@localhost/blog"
+   
    SECRET_KEY = os.environ.get('SECRET_KEY')
    MAIL_USERNAME = os.environ.get('MAIL_USERNAME')
    PASSWORD = os.environ.get('PASSWORD')
@@ -15,12 +15,15 @@ class Config():
 
 
 class DevConfig(Config):
+    SQLALCHEMY_DATABASE_URI = "postgresql+psycopg2://moringa:Access@localhost/blog"
     DEBUG = True
 
 
 
 class ProdConfig(Config):
-    pass
+    SQLALCHEMY_DATABASE_URI = os.environ.get("DATABASE_URL", "")
+    if SQLALCHEMY_DATABASE_URI.startswith('postgres://'):
+           SQLALCHEMY_DATABASE_URI=SQLALCHEMY_DATABASE_URI.replace('postgres://','postgresql://',1)
 
 
 
