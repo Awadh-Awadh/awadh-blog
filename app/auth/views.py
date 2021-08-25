@@ -1,4 +1,4 @@
-from flask import render_template, redirect,url_for,request
+from flask import render_template, redirect,url_for,request,flash
 from werkzeug.security import generate_password_hash,check_password_hash
 from . import auth
 from .forms import LoginForm, RegisterForm
@@ -18,8 +18,8 @@ def register():
       user = User(username = form.username.data, email = form.email.data, password = hashed_password)
       db.session.add(user)
       db.session.commit()
-      send_mail("Welcome to Shrededd","welcome_user",user.email,user=user)
-
+      #send_mail("Welcome to Shrededd","welcome_user",user.email,user=user)
+      #flash("You can now login")
       return redirect('login')
   return render_template('register.html', form=form)
 
@@ -31,14 +31,16 @@ def login():
       return redirect('main.index')
     form = LoginForm()
     if form.validate_on_submit():
-      user = User.query.filter_by(email = form.email.data).first()
-      if user and bcrypt.check_password_hash(user.password, form.password.data):
-        login_user(user, remember=form.remember_me.data)
-        next = request.args.get('next')
-        if next is None or not next.startswith('/'):
-            next = url_for('main.index')
-            return redirect(next)
-        return redirect(url_for('main.account'))
+        user = User.query.filter_by(email = form.email.data).first()
+        if user and bcrypt.check_password_hash(user.password, form.password.data):
+            login_user(user, remember=form.remember_me.data)
+            next = request.args.get('next')
+            if next is None or not next.startswith('/'):
+                next = url_for('main.index')
+                return redirect(next)
+        
+            return redirect(url_for('main.account'))
+        flash("invalid username or password")
 
     return render_template('login.html', form = form)
 
